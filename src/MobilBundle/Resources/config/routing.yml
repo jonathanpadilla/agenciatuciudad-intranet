@@ -1,0 +1,7 @@
+mobil_homepage:
+    path:     /
+    defaults: { _controller: MobilBundle:Default:index }
+
+mobil_cotizacion_informacion_producto:
+    path:     /cotizacion/informacion-producto/
+    defaults: { _controller: MobilBundle:Cotizacion:informacionProducto }

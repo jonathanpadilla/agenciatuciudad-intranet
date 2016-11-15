@@ -1,0 +1,3 @@
+agencia_homepage:
+    path:     /
+    defaults: { _controller: AgenciaBundle:Default:index }

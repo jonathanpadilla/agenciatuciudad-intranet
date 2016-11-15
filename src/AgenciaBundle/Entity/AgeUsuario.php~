@@ -1,0 +1,77 @@
+<?php
+
+namespace AgenciaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * AgeUsuario
+ *
+ * @ORM\Table(name="age_usuario", indexes={@ORM\Index(name="usu_tipo_usuario_fk", columns={"usu_tipo_usuario_fk"})})
+ * @ORM\Entity
+ */
+class AgeUsuario
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="usu_id_pk", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $usuIdPk;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="usu_persona_fk", type="integer", nullable=true)
+     */
+    private $usuPersonaFk;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usu_correo", type="string", length=150, nullable=true)
+     */
+    private $usuCorreo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usu_clave", type="string", length=150, nullable=true)
+     */
+    private $usuClave;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="usu_habilitado", type="boolean", nullable=true)
+     */
+    private $usuHabilitado;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="usu_fecha_registro", type="datetime", nullable=true)
+     */
+    private $usuFechaRegistro;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usu_comentario", type="text", length=65535, nullable=true)
+     */
+    private $usuComentario;
+
+    /**
+     * @var \AgeUsuarioTipo
+     *
+     * @ORM\ManyToOne(targetEntity="AgeUsuarioTipo")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="usu_tipo_usuario_fk", referencedColumnName="uti_id_pk")
+     * })
+     */
+    private $usuTipoUsuarioFk;
+
+
+}

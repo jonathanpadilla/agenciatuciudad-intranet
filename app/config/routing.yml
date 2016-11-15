@@ -1,3 +1,15 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+agencia:
+    resource: "@AgenciaBundle/Resources/config/routing.yml"
+    prefix:   /agencia/
+
+producto:
+    resource: "@ProductoBundle/Resources/config/routing.yml"
+    prefix:   /producto/
+
+base:
+    resource: "@BaseBundle/Resources/config/routing.yml"
+    prefix:   /
+
+mobil:
+    resource: "@MobilBundle/Resources/config/routing.yml"
+    prefix:   /mobil/
