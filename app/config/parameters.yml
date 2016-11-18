@@ -8,10 +8,10 @@ parameters:
     database_persona:   tuciudad_persona
     database_producto:  tuciudad_producto
 
-    # database_user: tuciudad_root
-    # database_password: hAz#Rn0]iBLo
-    database_user: root
-    database_password: null
+    database_user: tuciudad_root
+    database_password: hAz#Rn0]iBLo
+    # database_user: root
+    # database_password: null
 
     mailer_transport: smtp
     mailer_host: 127.0.0.1

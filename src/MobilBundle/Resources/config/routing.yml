@@ -5,3 +5,11 @@ mobil_homepage:
 mobil_cotizacion_informacion_producto:
     path:     /cotizacion/informacion-producto/
     defaults: { _controller: MobilBundle:Cotizacion:informacionProducto }
+
+mobil_cotizacion_informacion_producto_total:
+    path:     /cotizacion/informacion-producto-total/
+    defaults: { _controller: MobilBundle:Cotizacion:informacionProductoTotal }
+
+mobil_cotizacion_enviar:
+    path:     /cotizacion/enviar/
+    defaults: { _controller: MobilBundle:Cotizacion:enviar }
