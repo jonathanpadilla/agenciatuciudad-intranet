@@ -120,7 +120,8 @@ class CotizacionController extends Controller
                     'correo'    => $post->cotizacion->form->correo,
                     'telefono'  => $post->cotizacion->form->telefono,
                     'mensaje'   => $post->cotizacion->form->observacion,
-                    'to'        => 'jonathanpadilla09@outlook.com',
+                    // 'to'        => 'jonathanpadilla09@outlook.com',
+                    'to'        => 'jonathanpadilla0109@gmail.com',
                 ];
 
                 print_r($datos_mail);
@@ -151,12 +152,12 @@ class CotizacionController extends Controller
         $return = false;
         if(is_array($arr))
         {
-            $headers = "From: " . $arr['correo'] . "\r\n";
-            $headers .= "Reply-To: ". $arr['correo']. "\r\n";
+            $headers = "From: jonathanpadilla0109@gmail.com\r\n";
+            $headers .= "Reply-To: jonathanpadilla0109@gmail.com\r\n";
             $headers .= "MIME-Version: 1.0\r\n";
             $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
             $contenido = $this->renderView('BaseBundle:Default:plantilla_email_ventas.html.twig',array('datos' => $arr));
-            // echo $contenido; exit;
+            echo $contenido; exit;
             if(mail($arr['to'], 'www.tuciudad.cl - '.$arr['nombre'], $contenido, $headers))
             {
                 $return = true;
