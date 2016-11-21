@@ -77,10 +77,26 @@ doctrine:
                 user:     "%database_user%"
                 password: "%database_password%"
                 charset:  UTF8
+            tuciudad_cliente:
+                driver:   pdo_mysql
+                host:     "%database_host%"
+                port:     "%database_port%"
+                dbname:   "%database_cliente%"
+                user:     "%database_user%"
+                password: "%database_password%"
+                charset:  UTF8
+            tuciudad_organizacion:
+                driver:   pdo_mysql
+                host:     "%database_host%"
+                port:     "%database_port%"
+                dbname:   "%database_organizacion%"
+                user:     "%database_user%"
+                password: "%database_password%"
+                charset:  UTF8
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        default_entity_manager: tuciudad_producto
+        default_entity_manager: tuciudad_organizacion
         entity_managers:
             tuciudad_defecto:
                 connection: tuciudad_defecto
@@ -96,6 +112,14 @@ doctrine:
                     BaseBundle: ~
             tuciudad_producto:
                 connection: tuciudad_producto
+                mappings:
+                    BaseBundle: ~
+            tuciudad_cliente:
+                connection: tuciudad_cliente
+                mappings:
+                    BaseBundle: ~
+            tuciudad_organizacion:
+                connection: tuciudad_organizacion
                 mappings:
                     BaseBundle: ~
 

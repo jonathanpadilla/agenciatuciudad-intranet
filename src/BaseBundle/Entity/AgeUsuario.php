@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * AgeUsuario
  *
- * @ORM\Table(name="age_usuario", indexes={@ORM\Index(name="usu_tipo_usuario_fk", columns={"usu_tipo_usuario_fk"})})
+ * @ORM\Table(name="age_usuario", indexes={@ORM\Index(name="usu_tipo_usuario_fk", columns={"usu_tipo_usuario_fk"}), @ORM\Index(name="usu_persona_fk", columns={"usu_persona_fk"})})
  * @ORM\Entity
  */
 class AgeUsuario
@@ -20,13 +20,6 @@ class AgeUsuario
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $usuIdPk;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="usu_persona_fk", type="integer", nullable=true)
-     */
-    private $usuPersonaFk;
 
     /**
      * @var string
@@ -73,6 +66,16 @@ class AgeUsuario
      */
     private $usuTipoUsuarioFk;
 
+    /**
+     * @var \PerPersona
+     *
+     * @ORM\ManyToOne(targetEntity="PerPersona")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="usu_persona_fk", referencedColumnName="per_id_pk")
+     * })
+     */
+    private $usuPersonaFk;
+
 
 
     /**
@@ -83,29 +86,6 @@ class AgeUsuario
     public function getUsuIdPk()
     {
         return $this->usuIdPk;
-    }
-
-    /**
-     * Set usuPersonaFk
-     *
-     * @param integer $usuPersonaFk
-     * @return AgeUsuario
-     */
-    public function setUsuPersonaFk($usuPersonaFk)
-    {
-        $this->usuPersonaFk = $usuPersonaFk;
-
-        return $this;
-    }
-
-    /**
-     * Get usuPersonaFk
-     *
-     * @return integer 
-     */
-    public function getUsuPersonaFk()
-    {
-        return $this->usuPersonaFk;
     }
 
     /**
@@ -244,5 +224,28 @@ class AgeUsuario
     public function getUsuTipoUsuarioFk()
     {
         return $this->usuTipoUsuarioFk;
+    }
+
+    /**
+     * Set usuPersonaFk
+     *
+     * @param \BaseBundle\Entity\PerPersona $usuPersonaFk
+     * @return AgeUsuario
+     */
+    public function setUsuPersonaFk(\BaseBundle\Entity\PerPersona $usuPersonaFk = null)
+    {
+        $this->usuPersonaFk = $usuPersonaFk;
+
+        return $this;
+    }
+
+    /**
+     * Get usuPersonaFk
+     *
+     * @return \BaseBundle\Entity\PerPersona 
+     */
+    public function getUsuPersonaFk()
+    {
+        return $this->usuPersonaFk;
     }
 }

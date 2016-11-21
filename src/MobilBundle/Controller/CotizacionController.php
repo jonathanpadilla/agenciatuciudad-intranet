@@ -4,6 +4,8 @@ namespace MobilBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use BaseBundle\Entity\PerPersona;
+use BaseBundle\Entity\OrgOrganizacion;
 use \stdClass;
 
 class CotizacionController extends Controller
@@ -112,21 +114,29 @@ class CotizacionController extends Controller
         {
             if($postdata = file_get_contents("php://input"))
             {
-                $post = json_decode($postdata);
+                $post = json_decode($postdata, true);
 
                 // enviar mail
                 $datos_mail = [
-                    'nombre'    => $post->cotizacion->form->nombre,
-                    'correo'    => $post->cotizacion->form->correo,
-                    'telefono'  => $post->cotizacion->form->telefono,
-                    'mensaje'   => $post->cotizacion->form->observacion,
-                    // 'to'        => 'jonathanpadilla09@outlook.com',
-                    'to'        => 'jonathanpadilla0109@gmail.com',
+                    'nombre'        => ucwords($post['cotizacion']['form']['nombre']),
+                    'correo'        => $post['cotizacion']['form']['correo'],
+                    'organizacion'  => ucfirst($post['cotizacion']['form']['organizacion']),
+                    'telefono'      => $post['cotizacion']['form']['telefono'],
+                    'mensaje'       => $post['cotizacion']['form']['observacion'],
+                    'productos'     => $post['cotizacion']['productos'],
+                    'to'            => $post['cotizacion']['form']['correo'],
+                    // 'to'            => 'jonathanpadilla0109@gmail.com',
                 ];
 
-                print_r($datos_mail);
+                // print_r($datos_mail['nombre']);exit;
 
-                $this->enviarMail($datos_mail);
+                if($this->agregarCliente($datos_mail))
+                {
+                    if($this->enviarMail($datos_mail))
+                    {
+
+                    }
+                }
 
                 // print_r($productos);
             }
@@ -135,20 +145,12 @@ class CotizacionController extends Controller
         exit;
     }
 
-    // private function enviarCotizacion($form)
-    // {
-    //     $datos  = array();
-    //     $datos['nombre']    = ($request->get('nombre', false))? $request->get('nombre'): 0;
-    //     $datos['correo']    = ($request->get('correo', false))? $request->get('correo'): 0;
-    //     $datos['telefono']  = ($request->get('telefono', false))? $request->get('telefono'): 0;
-    //     $datos['mensaje']   = stripcslashes(nl2br(htmlentities($request->get('mensaje'))));
-    //     $datos['to']        = 'jonathanpadilla09@outlook.com';
+    // FUNCIONES PRIVADAS
 
-    //     print_r($form);
-    // }
-
-    public function enviarMail($arr = false)
+    private function enviarMail($arr = false)
     {
+        // print_r($productos);
+
         $return = false;
         if(is_array($arr))
         {
@@ -156,16 +158,47 @@ class CotizacionController extends Controller
             $headers .= "Reply-To: jonathanpadilla0109@gmail.com\r\n";
             $headers .= "MIME-Version: 1.0\r\n";
             $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-            $contenido = $this->renderView('BaseBundle:Default:plantilla_email_ventas.html.twig',array('datos' => $arr));
+            $contenido = $this->renderView('BaseBundle:Plantillas:plantilla_email_ventas.html.twig', array('datos' => $arr));
             echo $contenido; exit;
             if(mail($arr['to'], 'www.tuciudad.cl - '.$arr['nombre'], $contenido, $headers))
             {
                 $return = true;
-                echo 'enviado';
-            }else{
-                echo 'no enviado';
+                // echo 'enviado';
             }
         }
+        return $return;
+    }
+
+    private function agregarCliente($arr = false)
+    {
+        // print_r(strtoupper($arr['nombre']));exit;
+        $return = false;
+        if(is_array($arr))
+        {
+            $em_per = $this->getDoctrine()->getManager('tuciudad_persona');
+
+            // guardar persona
+            $persona = new PerPersona(strtoupper($arr['nombre']));
+            $persona->setPerPrimerNombre();
+            $persona->setPerFechaRegistro(new \DateTime(date("Y-m-d H:i:s")));
+
+            $em_per->persist($persona);
+            $em_per->flush();
+
+            // guardar organizacion
+            if($arr['organizacion'])
+            {
+                $em_org = $this->getDoctrine()->getManager('tuciudad_organizacion');
+
+                $organizacion = new OrgOrganizacion();
+                $organizacion->setOrgNombre($arr['organizacion']);
+                $organizacion->setOrgFechaRegistro(new \DateTime(date("Y-m-d H:i:s")));
+
+                $em_org->persist($organizacion);
+                $em_org->flush();
+            }
+        }
+
         return $return;
     }
 }

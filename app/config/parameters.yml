@@ -3,13 +3,15 @@ parameters:
     database_host: 127.0.0.1
     database_port: null
 
-    database_defecto:   tuciudad_defecto
-    database_agencia:   tuciudad_agencia
-    database_persona:   tuciudad_persona
-    database_producto:  tuciudad_producto
+    database_defecto:       tuciudad_defecto
+    database_agencia:       tuciudad_agencia
+    database_persona:       tuciudad_persona
+    database_producto:      tuciudad_producto
+    database_cliente:       tuciudad_cliente
+    database_organizacion:  tuciudad_organizacion
 
-    database_user: tuciudad_root
-    database_password: hAz#Rn0]iBLo
+    database_user:      tuciudad_root
+    database_password:  hAz#Rn0]iBLo
     # database_user: root
     # database_password: null
 
