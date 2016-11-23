@@ -1,38 +1,4 @@
-<!--
-==================== Respmail ====================
-Respmail is a response HTML email designed to work
-on all major devices and responsive for smartphones
-that support media queries.
-** NOTE **
-This template comes with a lot of standard features
-that has been thoroughly tested on major platforms
-and devices, it is extremely flexible to use and
-can be easily customized by removing any row that
-you do not need.
-it is gauranteed to work 95% without any major flaws,
-any changes or adjustments should thoroughly be
-tested and reviewed to match with the general
-structure.
-** Profile **
-Licensed under MIT (https://github.com/charlesmudy/responsive-html-email-template/blob/master/LICENSE)
-Designed by Shina Charles Memud
-Respmail v1.2 (http://charlesmudy.com/respmail/)
-** Quick modification **
-We are using width of 500 for the whole content,
-you can change it any size you want (e.g. 600).
-The fastest and safest way is to use find & replace
-Sizes: [
-    wrapper   : '500',
-    columns   : '210',
-    x-columns : [
-            left : '90',
-            right: '350'
-        ]
-    }
-  #a2d3f5
-  -->
-
-  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
   <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -93,13 +59,7 @@ Sizes: [
       @media only screen and (max-width: 480px){
         /*////// CLIENT-SPECIFIC STYLES //////*/
         body{width:100% !important; min-width:100% !important;} /* Force iOS Mail to render the email at full width. */
-        /* FRAMEWORK STYLES */
-        /*
-        CSS selectors are written in attribute
-        selector format to prevent Yahoo Mail
-        from rendering media query styles on
-        desktop.
-        */
+  
         /*td[class="textContent"], td[class="flexibleContainerCell"] { width: 100%; padding-left: 10px !important; padding-right: 10px !important; }*/
         table[id="emailHeader"],
         table[id="emailBody"],
@@ -107,14 +67,7 @@ Sizes: [
         table[class="flexibleContainer"],
         td[class="flexibleContainerCell"] {width:100% !important;}
         td[class="flexibleContainerBox"], td[class="flexibleContainerBox"] table {display: block;width: 100%;text-align: left;}
-        /*
-        The following style rule makes any
-        image classed with 'flexibleImage'
-        fluid when the query activates.
-        Make sure you add an inline max-width
-        to those images to prevent them
-        from blowing out.
-        */
+
         td[class="imageContent"] img {height:auto !important; width:100% !important; max-width:100% !important; }
         img[class="flexibleImage"]{height:auto !important; width:100% !important;max-width:100% !important;}
         img[class="flexibleImageSmall"]{height:auto !important; width:auto !important;}
@@ -151,14 +104,7 @@ Sizes: [
       }
       /* end IOS targeting */
     </style>
-    <!--
-      Outlook Conditional CSS
-      These two style blocks target Outlook 2007 & 2010 specifically, forcing
-      columns into a single vertical stack as on mobile clients. This is
-      primarily done to avoid the 'page break bug' and is optional.
-      More information here:
-      http://templates.mailchimp.com/development/css/outlook-conditional-css
-    -->
+
     <!--[if mso 12]>
       <style type="text/css">
         .flexibleContainer{display:block !important; width:100% !important;}
@@ -172,16 +118,6 @@ Sizes: [
   </head>
   <body bgcolor="#E1E1E1" leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
 
-    <!-- CENTER THE EMAIL // -->
-    <!--
-    1.  The center tag should normally put all the
-      content in the middle of the email page.
-      I added "table-layout: fixed;" style to force
-      yahoomail which by default put the content left.
-    2.  For hotmail and yahoomail, the contents of
-      the email starts from this center, so we try to
-      apply necessary styling e.g. background-color.
-    -->
     <center style="background-color:#E1E1E1;">
       <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable" style="table-layout: fixed;max-width:100% !important;width: 100% !important;min-width: 100% !important;">
         <tr>
@@ -210,16 +146,7 @@ Sizes: [
                               <!-- CONTENT TABLE // -->
                               <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
-                                  <!--
-                                    The "invisibleIntroduction" is the text used for short preview
-                                    of the email before the user opens it (50 characters max). Sometimes,
-                                    you do not want to show this message depending on your design but this
-                                    text is highly recommended.
-                                    You do not have to worry if it is hidden, the next <td> will automatically
-                                    center and apply to the width 100% and also shrink to 50% if the first <td>
-                                    is visible.
-                                  -->
-                                  <td align="left" valign="middle" id="invisibleIntroduction" class="flexibleContainerBox" style="display:none !important; mso-hide:all;">
+                                     <td align="left" valign="middle" id="invisibleIntroduction" class="flexibleContainerBox" style="display:none !important; mso-hide:all;">
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:100%;">
                                       <tr>
                                         <td align="left" class="textContent">
@@ -676,11 +603,6 @@ Sizes: [
             <table bgcolor="#E1E1E1" border="0" cellpadding="0" cellspacing="0" width="800" id="emailFooter">
 
               <!-- FOOTER ROW // -->
-              <!--
-                To move or duplicate any of the design patterns
-                in this email, simply move or copy the entire
-                MODULE ROW section for each content block.
-              -->
               <tr>
                 <td align="center" valign="top">
                   <!-- CENTERING TABLE // -->

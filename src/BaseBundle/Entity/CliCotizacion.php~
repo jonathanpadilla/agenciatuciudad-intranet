@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * CliCotizacion
  *
- * @ORM\Table(name="cli_cotizacion", indexes={@ORM\Index(name="cot_usuario_fk", columns={"cot_usuario_fk"})})
+ * @ORM\Table(name="cli_cotizacion", indexes={@ORM\Index(name="cot_usuario_fk", columns={"cot_usuario_fk"}), @ORM\Index(name="cot_vendedor_fk", columns={"cot_vendedor_fk"})})
  * @ORM\Entity
  */
 class CliCotizacion
@@ -65,6 +65,16 @@ class CliCotizacion
      * })
      */
     private $cotUsuarioFk;
+
+    /**
+     * @var \AgeUsuario
+     *
+     * @ORM\ManyToOne(targetEntity="AgeUsuario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cot_vendedor_fk", referencedColumnName="usu_id_pk")
+     * })
+     */
+    private $cotVendedorFk;
 
 
 
@@ -214,5 +224,28 @@ class CliCotizacion
     public function getCotUsuarioFk()
     {
         return $this->cotUsuarioFk;
+    }
+
+    /**
+     * Set cotVendedorFk
+     *
+     * @param \BaseBundle\Entity\AgeUsuario $cotVendedorFk
+     * @return CliCotizacion
+     */
+    public function setCotVendedorFk(\BaseBundle\Entity\AgeUsuario $cotVendedorFk = null)
+    {
+        $this->cotVendedorFk = $cotVendedorFk;
+
+        return $this;
+    }
+
+    /**
+     * Get cotVendedorFk
+     *
+     * @return \BaseBundle\Entity\AgeUsuario 
+     */
+    public function getCotVendedorFk()
+    {
+        return $this->cotVendedorFk;
     }
 }

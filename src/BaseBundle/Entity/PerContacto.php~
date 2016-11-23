@@ -50,6 +50,13 @@ class PerContacto
     private $conFechaRegistro;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="con_comentario", type="text", length=65535, nullable=true)
+     */
+    private $conComentario;
+
+    /**
      * @var \DefTipoContacto
      *
      * @ORM\ManyToOne(targetEntity="DefTipoContacto")
@@ -171,6 +178,29 @@ class PerContacto
     public function getConFechaRegistro()
     {
         return $this->conFechaRegistro;
+    }
+
+    /**
+     * Set conComentario
+     *
+     * @param string $conComentario
+     * @return PerContacto
+     */
+    public function setConComentario($conComentario)
+    {
+        $this->conComentario = $conComentario;
+
+        return $this;
+    }
+
+    /**
+     * Get conComentario
+     *
+     * @return string 
+     */
+    public function getConComentario()
+    {
+        return $this->conComentario;
     }
 
     /**

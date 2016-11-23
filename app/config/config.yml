@@ -96,7 +96,7 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        default_entity_manager: tuciudad_organizacion
+        default_entity_manager: tuciudad_cliente
         entity_managers:
             tuciudad_defecto:
                 connection: tuciudad_defecto
