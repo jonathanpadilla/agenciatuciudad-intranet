@@ -36,14 +36,18 @@ class CotizacionController extends Controller
     					if($producto = $em->getRepository('BaseBundle:ProProducto')->findOneBy(array('proIdPk' => $value->producto )))
 		    			{
 		    				$nombre = $producto->getProNombre();
+                            $valor  = $producto->getProValor();
 		    			}
-		    			$datos->nombre = $nombre;
-    				}else{
-    					$nombre = 'Sin información';
-    					if($producto = $em->getRepository('BaseBundle:ProItem')->findOneBy(array('iteIdPk' => $value->item )))
-		    			{
-		    				$nombre = $producto->getIteNombre();
-		    			}
+                        $datos->valor = $valor;
+                        $datos->nombre = $nombre;
+                    }else{
+                        $nombre = 'Sin información';
+                        if($producto = $em->getRepository('BaseBundle:ProItem')->findOneBy(array('iteIdPk' => $value->item )))
+                        {
+                            $nombre = $producto->getIteNombre();
+                            $valor  = $producto->getIteValor();
+                        }
+                        $datos->valor = $valor;
 		    			$datos->nombre = $nombre;
     				}
     				$datos->producto = $value->producto;
@@ -88,6 +92,13 @@ class CotizacionController extends Controller
                             $array[$value->pedido]['pedido'] = $value->pedido;
                             $array[$value->pedido]['nombre'] = $producto->getProNombre();
                             $array[$value->pedido]['foto'] = 'placeholder.png';
+
+                            if(isset($array[$value->pedido]['valor']))
+                            {
+                                $array[$value->pedido]['valor'] += $producto->getProValor();
+                            }else{
+                                $array[$value->pedido]['valor'] = $producto->getProValor();
+                            }
                         }
                     }else{
                         if($producto = $em->getRepository('BaseBundle:ProItem')->findOneBy(array('iteIdPk' => $value->item )))
